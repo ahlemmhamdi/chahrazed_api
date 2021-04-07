@@ -13,7 +13,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping(path="/adduser") // Map ONLY POST Requests
+    @PostMapping(path="/register") // Map ONLY POST Requests
     public @ResponseBody
     String addNewUser (
               @RequestBody User user) {
