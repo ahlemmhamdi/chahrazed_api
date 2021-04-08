@@ -1,33 +1,52 @@
 package tn.alfacomputers.entities;
 
-import lombok.AllArgsConstructor;
-import org.hibernate.annotations.Table;
-//import org.springframework.data.annotation.Id;
-import javax.persistence.Id;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import java.io.Serializable;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(appliesTo = "user")
+@Table(name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        }
+)
 
-public class User implements Serializable {
+public class User  {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="username")
+    @NotBlank
+    @Size(max = 50)
     private String username;
 
-    @Column(name="email")
+    @NotBlank
+    @Size(max = 50)
+    @Email
     private String email;
 
-    @Column(name="password")
+    @NotBlank
+    @Size(max = 120)
     private String password;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
 
     public void setId(Integer id) {
@@ -61,5 +80,12 @@ public class User implements Serializable {
 
     public String getPassword() {
         return password;
+    }
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
