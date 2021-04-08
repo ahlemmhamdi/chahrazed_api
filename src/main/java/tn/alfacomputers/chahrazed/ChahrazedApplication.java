@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-@EnableAutoConfiguration
 @ComponentScan("tn.alfacomputers.*")
 @EntityScan("tn.alfacomputers.entities")
 @EnableJpaRepositories("tn.alfacomputers.repositories")
