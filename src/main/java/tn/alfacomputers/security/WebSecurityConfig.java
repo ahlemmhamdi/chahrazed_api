@@ -52,6 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+
+	//TODO: to setup ghetroom uril to be public access
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()
@@ -59,7 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/api/v1/users/auth/**").permitAll()
 			.antMatchers("/api/v1/test/**").permitAll()
-			.anyRequest().authenticated();
+			.antMatchers("/api/vi/rooms/getroom/**").permitAll()
+				.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

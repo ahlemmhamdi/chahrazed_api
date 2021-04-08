@@ -11,9 +11,9 @@ import tn.alfacomputers.repositories.RoomRepository;
 public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
-    @PostMapping(path="/addrooms")
+    @PostMapping(path="/addroom")
     public @ResponseBody
-    String addNewUser (
+    String addNewRoom (
             @RequestBody Room room) {
 
 
