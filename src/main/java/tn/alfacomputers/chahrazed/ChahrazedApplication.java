@@ -1,5 +1,6 @@
 package tn.alfacomputers.chahrazed;
 
+import tn.alfacomputers.Controllers.RoomController;
 import tn.alfacomputers.Controllers.UserController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +11,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @ComponentScan(basePackageClasses =  UserController.class)
+@ComponentScan(basePackageClasses = RoomController.class)
 @EntityScan("tn/alfacomputers/entities")
 @EnableJpaRepositories("tn/alfacomputers/repositories")
 @SpringBootApplication
