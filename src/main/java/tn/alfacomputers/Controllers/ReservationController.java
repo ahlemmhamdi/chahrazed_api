@@ -12,9 +12,9 @@ public class ReservationController {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    @PostMapping(path = "/addreservations")
+    @PostMapping(path = "/addreservation")
     public @ResponseBody
-    String addNewUser(
+    String addNewReservation(
             @RequestBody Reservation reservation) {
 
 
@@ -23,12 +23,12 @@ public class ReservationController {
         r.setDepartureDate(reservation.getDepartureDate());
         r.setTotal(reservation.getTotal());
         reservationRepository.save(r);
-        return "Room Successfully added :)";
+        return "Reservation Successfully added :)";
     }
 
     @GetMapping(path = "/getreservation")
     public @ResponseBody
-    Iterable<Reservation> getAllRooms() {
+    Iterable<Reservation> getAllReservations() {
 
         return reservationRepository.findAll();
     }

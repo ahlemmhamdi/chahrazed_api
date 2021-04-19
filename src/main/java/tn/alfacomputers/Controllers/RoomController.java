@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.alfacomputers.entities.Room;
 import tn.alfacomputers.repositories.RoomRepository;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @RequestMapping("/api/v1/rooms")
 public class RoomController {
