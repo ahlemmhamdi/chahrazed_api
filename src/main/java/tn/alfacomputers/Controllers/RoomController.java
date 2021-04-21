@@ -33,3 +33,5 @@ public class RoomController {
         return roomRepository.findAll();
     }
 }
+
+//TODO: to fix null value of photo_url when wee submit new room
