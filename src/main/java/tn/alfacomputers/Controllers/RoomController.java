@@ -1,10 +1,13 @@
 package tn.alfacomputers.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tn.alfacomputers.entities.Room;
 import tn.alfacomputers.repositories.RoomRepository;
+
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
@@ -31,6 +34,10 @@ public class RoomController {
     public @ResponseBody Iterable<Room> getAllRooms() {
 
         return roomRepository.findAll();
+    }
+    @GetMapping(path="/getroom/{roomid}")
+    public @ResponseBody Optional<Room> getRoomById(@PathVariable Integer roomid){
+        return roomRepository.findById(roomid);
     }
 }
 

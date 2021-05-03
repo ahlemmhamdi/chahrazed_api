@@ -6,4 +6,5 @@ import tn.alfacomputers.entities.Room;
 
 @Repository
 public interface RoomRepository extends CrudRepository<Room,Integer> {
+
 }
