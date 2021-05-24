@@ -3,6 +3,7 @@ package tn.alfacomputers.entities;
 import org.hibernate.annotations.Table;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(appliesTo = "room")
@@ -25,6 +26,14 @@ public class Room {
 
     @Column(name="photo_url")
     private String photo_url;
+
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Reservation> reservations;
+
+    public Room(Long roomId) {
+        this.id=roomId;
+    }
 
     public String getPhoto_url() {
         return photo_url;

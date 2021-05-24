@@ -22,6 +22,43 @@ public class Reservation {
     @Column(name="total")
     private double total;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
+
+    public Reservation() {
+
+    }
+
+    public Reservation(Integer id, String arrivalDate, String departureDate, double total, User user, Room room) {
+        this.id = id;
+        ArrivalDate = arrivalDate;
+        DepartureDate = departureDate;
+        this.total = total;
+        this.user = user;
+        this.room = room;
+    }
+
     public Integer getId() {
         return id;
     }
